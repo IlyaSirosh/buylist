@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="uk">
+    <meta charset="UTF-8">
+    <title>My Page</title>
+
+
+    <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+<body>
+    
+    <script	type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js">	</script>
+    <script	type="text/javascript" src="js/main.js"></script>
+    
+    <div class="js-buylist">
+        <div class="panel left-panel">
+            <div class="segment">
+                <div class="add-item">
+                    <input type="text" class="input" placeholder="Назва товару" />
+                    <button class="button add-button">Додати</button>
+                </div>
+            </div>
+                <div class="template-item hidden">
+                    <div class="segment">
+                        <div class="item-row">
+                            <div class="item-name item"></div>
+                            <div class="item-changes item">
+                                <button class="button minus-button-inactive circle item">-</button>
+                                <button class="button minus-button-active circle item hidden">-</button>
+                                <div class="item-amount item">1</div>
+                                <button class="button plus-button circle item">+</button>
+                            </div>
+                            <div class="item-remove item">
+                                <button class="button sold-button item">Куплено</button>
+                                <button class="button non-sold-button item hidden">Не куплено</button>
+                                <button class="button remove-button item">X</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <div class="items-list">
+            </div>
+        </div>
+        <div class="panel right-panel">
+            <div class="segment items-lable">Залишилося</div>
+            <div class="segment items-remained">
+                <div class='template-lable hidden'>
+                    <lable class="item-lable"><span class="item-lable-name"></span><lable class="item-amount-lable">1</lable></lable>
+                </div>
+
+            </div>
+            <div class="segment items-lable">Куплено</div>
+            <div class="segment items-sold">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
