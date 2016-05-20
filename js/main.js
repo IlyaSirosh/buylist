@@ -5,11 +5,16 @@ $(function(){
     var LABLES_REMAINED = $('.items-remained');
     var LABLES_SOLD = $('.items-sold');
     
+    addItem('Помідори');
+    addItem('Сир');
+    addItem('Хліб');
+    
     $('.add-button').click(function(){
         console.log('add button was pressed');
         
         var value = $('.input').val();
         $('.input').val('');
+        
         
         if(value!=='' && isExclusive(value)){
             addItem(value);
@@ -17,8 +22,6 @@ $(function(){
         $('.input').focus();
         
     });
-    
-    
     
     
     function addItem(title){
@@ -111,10 +114,7 @@ $(function(){
         name.click(function(){
             name.addClass('hidden');
             name_edit.removeClass('hidden');
-            name_edit.focus();
-
-            
-
+            name_edit.focus(); 
         });
         
         name_edit.focusin(function(){
@@ -149,12 +149,14 @@ $(function(){
     
     
     function isExclusive(title){
+        var result = true;
         
-        //this method will be done later
-        return true;
+        ITEMS_LIST.find('.not-sold-title').each(function(i,v){
+            if($(v).text()===title) 
+                result = false;
+        });
+        
+        return result;
     }
     
-    addItem('Помідори');
-    addItem('Сир');
-    addItem('Хліб');
 });
