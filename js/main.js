@@ -14,14 +14,19 @@ $(function(){
         if(value!=='' && isExclusive(value)){
             addItem(value);
         }
+        $('.input').focus();
         
     });
+    
+    
     
     
     function addItem(title){
         console.log('add item "'+title+'"');
         var node = $(TEMPLATE_ITEM);
-
+        var name = node.find('.not-sold-title');
+        var name_sold = node.find('.sold-title');
+        var name_edit = node.find('.title-edit');
         var minus = node.find('.minus-button-active');
         var minus_non = node.find('.minus-button-inactive');
         var plus = node.find('.plus-button');
@@ -31,10 +36,10 @@ $(function(){
         var remove = node.find('.remove-button');
         addLable(title);
         var lable = LABLES_REMAINED.find('#'+title+'-lable');
- 
-        node.find('.item-name').text(title);
-        //node.attr('id',title); 
         
+        name.text(title);
+        name_sold.text(title);
+         
         minus.click(function(){
             var n = parseInt(amount.text())-1;
             
@@ -70,8 +75,9 @@ $(function(){
             sold.addClass('hidden');
             remove.addClass('hidden');
             non_sold.removeClass('hidden');
-            node.find('.item-name').addClass('items-sold');
-            
+            name.addClass('items-sold');
+            name.addClass('hidden');
+            name_sold.removeClass('hidden');
             lable.addClass('items-sold');
             lable.remove();
             LABLES_SOLD.append(lable);
@@ -89,8 +95,9 @@ $(function(){
             sold.removeClass('hidden');
             remove.removeClass('hidden');
             non_sold.addClass('hidden');
-            node.find('.item-name').removeClass('items-sold');
-            
+            name.removeClass('items-sold');
+            name.removeClass('hidden');
+            name_sold.addClass('hidden');
             lable.removeClass('items-sold');
             lable.remove();
             LABLES_REMAINED.append(lable);
@@ -101,7 +108,36 @@ $(function(){
             lable.remove();
         });
         
+        name.click(function(){
+            name.addClass('hidden');
+            name_edit.removeClass('hidden');
+            name_edit.focus();
+
+            
+
+        });
+        
+        name_edit.focusin(function(){
+            name_edit.val(name.text());
+        });
+        
+        name_edit.focusout(function(){
+            var value = name_edit.val();
+                
+            if(value!='' && isExclusive(value)){
+                edit_name(value);
+            }
+            name.removeClass('hidden');
+            name_edit.addClass('hidden');
+        });
+        
         ITEMS_LIST.append(node);
+        
+        function edit_name(v){
+            console.log("'" + name.text()+ "' was edit: new value '" + v + "'");
+            name.text(v);
+            lable.find('.item-lable-name').text(v);
+        }
     }
     
     function addLable(title){
